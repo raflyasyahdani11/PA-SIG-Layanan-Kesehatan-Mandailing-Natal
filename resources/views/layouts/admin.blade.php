@@ -154,7 +154,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{ route('logout') }}"
                         class="btn btn-secondary d-flex align-items-center justify-content-center btn-upgrade-pro">
                         <span class="bi bi-box-arrow-in-left align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

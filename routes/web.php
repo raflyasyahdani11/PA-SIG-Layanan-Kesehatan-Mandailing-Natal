@@ -45,9 +45,9 @@ Route::prefix('/login')->group(function () {
 
 });
 
-Route::post('/logout',[LoginController::class,'logout']);
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
-Route::prefix('/admin')->group(function () {
+Route::prefix('/admin')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return redirect()->route('admin.dashboard');
     });
