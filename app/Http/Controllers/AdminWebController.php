@@ -80,7 +80,7 @@ class AdminWebController extends Controller
 
     public function showTenagaMedisAdd()
     {
-        $layananKesehatans = LayananKesehatan::all();
+        $layananKesehatans = LayananKesehatan::orderBy('jenis_layanan')->get();
 
         return view('admin.tenaga_medis.add')
             ->with('title', 'Tambah Tenaga Medis')
@@ -91,7 +91,7 @@ class AdminWebController extends Controller
     public function showTenagaMedisEdit(Request $request, $id = '')
     {
         $tenagaMedis = TenagaMedis::find($id);
-        $layananKesehatans = LayananKesehatan::all();
+        $layananKesehatans = LayananKesehatan::orderBy('jenis_layanan')->get();
 
         return view('admin.tenaga_medis.edit')
             ->with('title', 'Edit Tenaga Medis')
