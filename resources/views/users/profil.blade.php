@@ -10,10 +10,10 @@
                 <div class="carousel-inner" role="listbox">
 
                     <div class="carousel-item active"
-                        style="background-image: url(/assets/user/img/dinas.jpg)">
+                        style="background-image: url(/assets/user/img/bg-dinas.jpg)">
                         <div class="carousel-container">
                             <div class="container">
-                                <h2 class="animate__animated animate__fadeInDown">Welcome to Dinas Kesehatan Mandailing
+                                <h2 class="animate__animated animate__fadeInDown">Profil Dinas Kesehatan Mandailing
                                     Natal</h2>
                                 <a href="{{ route('users.profil')}}"
                                     class="btn-get-started scrollto animate__animated animate__fadeInUp">Get Started</a>

@@ -24,6 +24,7 @@
     <link href="/assets/user/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="/assets/user/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="/assets/user/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="/assets/user/css/style.css" rel="stylesheet">
@@ -45,7 +46,7 @@
 
             <div class="row justify-content-center align-items-center">
                 <div class="col-xl-11 d-flex align-items-center justify-content-between">
-                    <h1 class="logo"><a href="/home"> Mandailing Natal</a></h1>
+                    <h1 class="logo"><a href="{{ route('users.home') }}"> Mandailing Natal</a></h1>
                     <!-- Uncomment below if you prefer to use an image logo -->
                     <!-- <a href="index.html" class="logo"><img src="/assets/user/img/logo.png" alt="" class="img-fluid"></a>-->
 

@@ -12,6 +12,14 @@
         .popup .up {
             vertical-align: text-top;
         }
+        #legend {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            padding: 10px;
+            margin: 30px;
+            border-radius: 30px;
+            /* border: 3px solid #000; */
+        }
     </style>
 @endsection
 
@@ -19,7 +27,74 @@
     <!-- ======= hero Section ======= -->
     <section id="hero">
         <div class="hero-container w-100 h-100" id="maps"></div>
+        <div id="legend" class="shadow p-3 mb-5 bg-body rounded" style="width: 230px; text-align: left !important;">
+            <div class="container bg-white">
+                <div class="row fs-5" style="text-align: left">
+                    <div class="col-md-12">
+                        <div class="row p-2">
+                            <div class="col-md-12">
+                                Keterangan :
+                            </div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="col-md-12">
+                                <i class="fa-solid fa-location-dot text-danger"></i> Rumah sakit <br>
+                            </div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="col-md-12">
+                                <i class="fa-solid fa-location-dot text-primary"></i> Puskesmas <br>
+                            </div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="col-md-12">
+                                <i class="fa-solid fa-location-dot text-dark"></i> klinik<br>
+                            </div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="col-md-12">
+                                <i class="fa-solid fa-location-dot text-success"></i> klinik gigi <br>
+                            </div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="col-md-12">
+                                <i class="fa-solid fa-location-dot text-warning"></i> Balai <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section><!-- End Hero Section -->
+     <!-- ======= Footer ======= -->
+     <footer id="footer">
+        <div class="footer-top">
+            <div class="carousel-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 col-md-6 footer-info">
+                        <div class="row">
+                            <div class="col-12">
+                                <h1 style="font-size: 4rem !important;"><b> Mulai cari rute terdekat</b></h1>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="#maps"
+                                    class="btn btn-success btn-lg">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3 footer-contact">
+                            <img src="/assets/user/img/clients/turn-right.png" width="50%" class="img-fluid" alt="" id="route" >
+                        </div>
+                    </div>
+                </div>
+                </div>
+    </footer>
+    <!-- ======= About Us Section ======= -->
 @endsection
 
 @push('js')
@@ -107,6 +182,9 @@
             }
 
             updateList(layananKesehatanShow);
+            const legend = document.getElementById("legend");
+            
+            map.controls[google.maps.ControlPosition.LEFT_CENTER].push(legend);
         }
 
 
@@ -223,7 +301,7 @@
                         url += 'klinik.png';
                         break;
                     case 'Klinik_Gigi':
-                        url += 'gigi.png';
+                        url += 'gigii.png';
                         break;
                     case 'Balai':
                         url += 'balai.png';
