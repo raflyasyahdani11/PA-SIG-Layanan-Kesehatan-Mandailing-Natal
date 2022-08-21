@@ -166,6 +166,7 @@
             let map;
             let directionsService;
             let directionsRenderer;
+            let distanceMatrixService;
 
             const nowLocation = {
                 lat: 0,
@@ -180,6 +181,7 @@
 
                 directionsService = new google.maps.DirectionsService();
                 directionsRenderer = new google.maps.DirectionsRenderer();
+                distanceMatrixService = new google.maps.DistanceMatrixService();
 
                 map = new google.maps.Map(document.getElementById("maps"), {
                     zoom: 9,
@@ -243,33 +245,45 @@
                         }, options);
                 }
 
-                document.getElementById('route').addEventListener('click', (e) => {
-                    let min = 0;
-                    const nearestLocation = {
-                        lat: 0,
-                        lng: 0
-                    };
-
-                    layananKesehatanShow.forEach((v, i) => {
-                        const posLayananKesehatan = {
+                document.getElementById('route').addEventListener('click', async (e) => {
+                    const tempLayananKesehatan = layananKesehatanShow.map((v) => {
+                        const layKesCoord = {
                             lat: v.latitude,
                             lng: v.longitude
                         };
 
-                        const jarak = haversine(posLayananKesehatan, nowLocation);
-
-                        if (i === 0) {
-                            min = jarak;
-                            nearestLocation.lat = v.latitude;
-                            nearestLocation.lng = v.longitude;
-                        }
-
-                        if (jarak < min) {
-                            min = jarak;
-                            nearestLocation.lat = v.latitude;
-                            nearestLocation.lng = v.longitude;
+                        return {
+                            ...layKesCoord,
+                            jarak: haversine(nowLocation, layKesCoord)
                         }
                     });
+
+                    tempLayananKesehatan.sort((a, b) => a.jarak - b.jarak);
+
+                    const request = {
+                        origins: [nowLocation],
+                        destinations: tempLayananKesehatan.slice(0, 25),
+                        travelMode: 'DRIVING'
+                    };
+
+                    const response = await distanceMatrixService.getDistanceMatrix(request);
+
+                    let min = 0;
+                    let index = 0;
+
+                    response.rows[0].elements.forEach((v, i) => {
+                        if (i === 0) {
+                            min = v?.distance?.value;
+                            index = i;
+                        }
+
+                        if (min > v?.distance?.value) {
+                            min = v?.distance?.value;
+                            index = i;
+                        }
+                    });
+
+                    const nearestLocation = tempLayananKesehatan[index];
 
                     calculateAndDisplayRoute(nowLocation, nearestLocation);
                 });
@@ -277,16 +291,6 @@
                 updateList(layananKesehatanShow);
 
                 const legend = document.getElementById("legend");
-
-                // for (const key in icons) {
-                //     const type = icons[key];
-                //     const name = type.name;
-                //     const icon = type.icon;
-                //     const div = document.createElement("div");
-
-                //     div.innerHTML = '<img src="' + icon + '"> ' + name;
-                //     legend.appendChild(div);
-                // }
 
                 map.controls[google.maps.ControlPosition.LEFT_CENTER].push(legend);
             }
@@ -395,22 +399,23 @@
                     });
 
                     let url = '/assets/user/img/clients/';
+                    let iconColor = '';
 
                     switch (e.jenis_layanan) {
                         case 'Rumah Sakit':
-                            url += 'rs.png';
+                            iconColor = '#DC3544';
                             break;
                         case 'Puskesmas':
-                            url += 'puskesmas.png';
+                            iconColor = '#0C6EFD';
                             break;
                         case 'Klinik':
-                            url += 'klinik.png';
+                            iconColor = '#212529';
                             break;
                         case 'Klinik Gigi':
-                            url += 'gigii.png';
+                            iconColor = '#1D8754';
                             break;
                         case 'Balai':
-                            url += 'balai.png';
+                            iconColor = '#FEC107';
                             break;
                     }
 
@@ -419,10 +424,18 @@
                         scaledSize: new google.maps.Size(40, 40)
                     };
 
+                    const icon = {
+                        path: "M384 192C384 279.4 267 435 215.7 499.2C203.4 514.5 180.6 514.5 168.3 499.2C116.1 435 0 279.4 0 192C0 85.96 85.96 0 192 0C298 0 384 85.96 384 192H384z",
+                        fillColor: iconColor,
+                        fillOpacity: 1,
+                        strokeWeight: 0,
+                        scale: 0.065,
+                    };
+
                     const marker = new google.maps.Marker({
                         position: positions,
                         title: `${e.jenis_layanan} ${e.nama_layanan}`,
-                        icon: image,
+                        icon: icon,
                         map: map
                     });
 
