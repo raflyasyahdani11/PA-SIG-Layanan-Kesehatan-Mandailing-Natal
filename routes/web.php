@@ -23,7 +23,7 @@ use App\Http\Controllers\UserWebController;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [UserWebController::class, 'showHome'])->name('users.home');
-    Route::get('/layanankesehatan/{id}',[UserWebController::class, 'showLayananKesehatan'])->name('users.layanankesehatan');
+    Route::get('/layanankesehatan/{id}', [UserWebController::class, 'showLayananKesehatan'])->name('users.layanankesehatan');
     Route::get('/profil', [UserWebController::class, 'showProfil'])->name('users.profil');
 });
 
@@ -36,16 +36,18 @@ Route::prefix('/bidang')->group(function () {
     Route::get('/sumber', [ProfilController::class, 'showBidangSumber'])->name('users.profile.sumber');
     Route::get('/unit', [ProfilController::class, 'showUnit'])->name('users.profile.unit');
     Route::get('/kelompok', [ProfilController::class, 'showKelompok'])->name('users.profile.kelompok');
-    
 });
 
 Route::prefix('/login')->group(function () {
-    Route::get('/', [LoginController::class,'showLogin'])->name('login.index');
-    Route::post('/', [LoginController::class,'authenticate'])->name('login.post');
-
+    Route::get('/', [LoginController::class, 'showLogin'])->name('login.index');
+    Route::post('/', [LoginController::class, 'authenticate'])->name('login.post');
 });
 
-Route::get('/logout',[LoginController::class,'logout'])->name('logout');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/password/{pass}', function ($pass) {
+    return password_hash($pass, PASSWORD_DEFAULT);
+});
 
 Route::prefix('/admin')->middleware('auth')->group(function () {
     Route::get('/', function () {
@@ -63,7 +65,7 @@ Route::prefix('/admin')->middleware('auth')->group(function () {
         Route::post('/edit/{id}', [LayananKesehatanController::class, 'edit'])->name('admin.layanan_kesehatan.edit.post');
 
         Route::get('/delete/{id}', [LayananKesehatanController::class, 'delete'])->name('admin.layanan_kesehatan.add.delete');
-        
+
         Route::get('/detail/{id}', [AdminWebController::class, 'showLayananKesehatanDetail'])->name('admin.layanan_kesehatan.detail');
     });
 

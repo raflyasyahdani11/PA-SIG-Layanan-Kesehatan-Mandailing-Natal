@@ -77,12 +77,12 @@
                             </div>
                             <div class="row p-2">
                                 <div class="col-md-12">
-                                    <i class="fa-solid fa-location-dot text-dark"></i> klinik<br>
+                                    <i class="fa-solid fa-location-dot text-dark"></i> Klinik<br>
                                 </div>
                             </div>
                             <div class="row p-2">
                                 <div class="col-md-12">
-                                    <i class="fa-solid fa-location-dot text-success"></i> klinik gigi <br>
+                                    <i class="fa-solid fa-location-dot text-success"></i> Klinik gigi <br>
                                 </div>
                             </div>
                             <div class="row p-2">
