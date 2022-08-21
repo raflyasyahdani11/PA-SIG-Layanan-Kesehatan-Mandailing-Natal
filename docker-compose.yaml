@@ -1,0 +1,31 @@
+version: '3.9'
+
+networks:
+  gis_network:
+
+services:
+  db-gis-mandailing:
+    container_name: db-gis-mandailing
+    image: mariadb
+    ports:
+      - 9191:3306
+    networks:
+      - gis_network
+    environment:
+      MARIADB_DATABASE: homestead
+      MARIADB_USER: secret
+      MARIADB_PASSWORD: secret
+      MARIADB_ROOT_PASSWORD: secret
+  db-gis-phpmyadmin:
+    container_name: db-gis-phpmyadmin
+    image: phpmyadmin
+    ports:
+      - 9192:80
+    networks:
+      - gis_network
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: db-gis-mandailing
+      PMA_USER: secret
+      PMA_PASSWORD: secret
+      PMA_PMADB: homestead
