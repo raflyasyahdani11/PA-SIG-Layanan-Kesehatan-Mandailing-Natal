@@ -155,7 +155,7 @@
             </div>
             <div id="legend-2" class="shadow p-1 mb-5 me-4 bg-body rounded" style="text-align: left !important;">
                 <div class="container bg-white">
-                    <p class="fs-6"><i>*Klik lokasi yang tersedia untuk lebih lengkap</i></p>
+                    <p class="fs-6"><i>*Klik <i class="bi bi-geo-alt-fill"></i> yang tersedia untuk informasi lebih lengkap</i></p>
                 </div>
             </div>
         </section>
@@ -176,8 +176,8 @@
 
                                 <div class="row">
                                     <div class="col-12">
-                                        <a href="#footer" class="btn btn-success btn-lg">Tekan Icon <i
-                                                class="fa-solid fa-diamond-turn-right text-warning"></i> Untuk Mencari Rute
+                                        <a href="#maps" class="btn btn-success btn-lg" id="route">Rute Terdekat <i
+                                                class="fa-solid fa-diamond-turn-right text-warning"></i> 
                                             <i class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
                             </div>
                             <div class="col-lg-3 col-md-3 footer-contact">
                                 <img src="/assets/user/img/clients/turn-right.png" width="50%" class="img-fluid"
-                                    alt="" id="route">
+                                    alt="" >
                             </div>
                         </div>
                     </div>
