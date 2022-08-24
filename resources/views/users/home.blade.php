@@ -139,7 +139,7 @@
                             </div>
                             <div class="row p-2">
                                 <div class="col-md-12">
-                                    <i class="fa-solid fa-location-dot text-success"></i> Klinik gigi <input type="checkbox"
+                                    <i class="fa-solid fa-location-dot text-success"></i> Klinik Gigi <input type="checkbox"
                                         id="klinik_gigi" checked /> <br>
                                 </div>
                             </div>
@@ -155,7 +155,14 @@
             </div>
             <div id="legend-2" class="shadow p-1 mb-5 me-4 bg-body rounded" style="text-align: left !important;">
                 <div class="container bg-white">
-                    <p class="fs-6"><i>*Klik <i class="bi bi-geo-alt-fill"></i> yang tersedia untuk informasi lebih lengkap</i></p>
+                    <p class="fs-6"><i>Klik <i class="bi bi-geo-alt-fill"></i> yang tersedia untuk informasi lebih
+                            lengkap</i></p>
+                </div>
+            </div>
+            <div id="legend-3" class="shadow p-1 ms-4 bg-body rounded" style="width: 230px; text-align: left !important;">
+                <div class="container bg-white">
+                    <p class="fs-6"><i>Tekan centang untuk <br> menghilangkan <br> atau memunculkan <i
+                                class="bi bi-geo-alt-fill"></i></i></p>
                 </div>
             </div>
         </section>
@@ -177,15 +184,14 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <a href="#maps" class="btn btn-success btn-lg" id="route">Rute Terdekat <i
-                                                class="fa-solid fa-diamond-turn-right text-warning"></i> 
+                                                class="fa-solid fa-diamond-turn-right text-warning"></i>
                                             <i class="fa-solid fa-arrow-right"></i></a>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-lg-3 col-md-3 footer-contact">
                                 <img src="/assets/user/img/clients/turn-right.png" width="50%" class="img-fluid"
-                                    alt="" >
+                                    alt="">
                             </div>
                         </div>
                     </div>
@@ -207,7 +213,8 @@
                     </div>
                     <div class="row">
                         <div class="col-8 p-0">
-                            <p class="mt-3 mb-0 p-0" style="text-align: left; font-size: 1.2rem;">Dinas Kesehatan Mandiling
+                            <p class="mt-3 mb-0 p-0" style="text-align: left; font-size: 1.2rem;">Dinas Kesehatan
+                                Mandiling
                                 Natal Menyediakan informasi lokasi layanan kesehatan di daerah
                                 Mandailing Natal .Berikut jenis layanan kesehatan yang dapat dilihat pada website ini :
                             </p>
@@ -375,9 +382,11 @@
 
             const legend = document.getElementById("legend");
             const legend2 = document.getElementById("legend-2");
+            const legend3 = document.getElementById("legend-3");
 
             map.controls[google.maps.ControlPosition.LEFT_CENTER].push(legend);
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend2);
+            map.controls[google.maps.ControlPosition.LEFT_CENTER].push(legend3);
 
             // Checkbox Listener
             document.getElementById("rumah_sakit").addEventListener('change', (e) => {
